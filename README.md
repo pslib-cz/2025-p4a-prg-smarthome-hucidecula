@@ -15,7 +15,7 @@ Minecraft server každých 5 sekund zapíše aktuální stav hry (biom, počasí
 - zabebzpečená komunikace (MQTT s TLS certifikátem + HTTPS)
 - vše řízeno lokálně přes HA, bez závislosti na cloudu
 
-<img width="1010" height="613" alt="Image" src="https://github.com/user-attachments/assets/24a62caa-7d45-467d-9e22-15f8cadecd41" />
+<img width="874" height="360" alt="Image" src="https://github.com/user-attachments/assets/461ef961-7c3f-43f7-9123-9ebf0746914e" />
 
 ## Výstup projektu
 
