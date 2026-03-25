@@ -30,3 +30,4 @@ Minecraft server každých 5 sekund zapíše aktuální stav hry (biom, počasí
 - WS2812B LED pásek
 - Ventilátor 5V 30x30mm
 - MOSFET IRLZ44N
+- DHT22 senzor
