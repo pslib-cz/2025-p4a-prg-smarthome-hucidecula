@@ -3,7 +3,7 @@
 Projekt IoT automatizace propojující Minecraft Paper server s fyzickou chytrou
 místností. Stav hry (aktuální biom, vlhkost, teplota hráče) se promítá do
 reálného prostředí prostřednictvím WS2812B LED pásku s dynamickými efekty, a
-naopak — podmínky ve fyzické místnosti (teplota, vlhkost) ovlivňují dění
+naopak - podmínky ve fyzické místnosti (teplota, vlhkost) ovlivňují dění
 v herním světě (počasí, oheň). Vše běží lokálně přes Home Assistant, bez
 závislosti na cloudových službách.
 
@@ -14,7 +14,7 @@ které je instalován adresovatelný LED pásek (60 LED) a senzor teploty a
 vlhkosti DHT22. Krabice představuje miniaturní "místnost", která reaguje na
 herní svět.
 
-Obousměrná integrace s Minecraftem je realizována přes RCON protokol —
+Obousměrná integrace s Minecraftem je realizována přes RCON protokol -
 Home Assistant se dotazuje Paper serveru na herní stav (PlaceholderAPI plugin,
 placeholder `%player_biome%`) a současně posílá herní příkazy zpět (`weather
 rain`, `setblock`, atd.). 
@@ -39,13 +39,13 @@ Home Assistant každé 3 sekundy volá přes SSH tunel RCON příkaz
 vrátí aktuální biom hráče (např. `JUNGLE`, `NETHER_WASTES`, `RIVER`),
 který se uloží do entity `sensor.minecraft_biome`. Podle jeho hodnoty HA
 spustí automatizaci, která přiřadí LED pásku odpovídající vizuální chování
-— statickou barvu pro většinu biomů, nebo vlastní animovaný efekt pro
+- statickou barvu pro většinu biomů, nebo vlastní animovaný efekt pro
 specifické scény (voda, Nether).
 
 Opačný tok: DHT22 senzor uvnitř krabice čte teplotu a vlhkost, hodnoty
 posílá přes ESPHome API do HA. Automatizace pak vyhodnotí prahové hodnoty
 (konfigurovatelné z dashboardu) a pošle RCON příkaz zpět na Minecraft
-server — například spustí déšť (`weather rain`), když vlhkost překročí
+server - například spustí déšť (`weather rain`), když vlhkost překročí
 danou hranici, nebo nekonečně zapaluje hráče (`setblock ~ ~ ~ minecraft:fire`) při
 překročení teplotního prahu.
 
@@ -54,10 +54,10 @@ překročení teplotního prahu.
 LED pásek podporuje dva vlastní efekty implementované jako lambda funkce
 v ESPHome firmware:
 
-- **Water Ripple** — pro vodní biomy (ocean, river, shore). Sinusové vlny
+- **Water Ripple** - pro vodní biomy (ocean, river, shore). Sinusové vlny
   modré barvy s pomalu posouvající se fází, vizuální evokace vodní hladiny.
-- **Nether Flames** — pro Nether biomy (nether_wastes, crimson, basalt,
-  soul_sand). Simulace ohně pomocí modelu tepelných gradientů — každá LEDka
+- **Nether Flames** - pro Nether biomy (nether_wastes, crimson, basalt,
+  soul_sand). Simulace ohně pomocí modelu tepelných gradientů - každá LEDka
   má svou "teplotu", která v čase klesá, náhodně vznikají nové plameny a
   teplo se rozšiřuje na sousední pixely. Barva odpovídá fyzikálnímu modelu
   žhnutí (černá → červená → oranžová → žlutá).
@@ -69,11 +69,11 @@ aby nebyly skokové a podporovaly imerzivní dojem.
 
 Rozhraní je rozděleno na dva specializované dashboardy:
 
-**Monitoring** — pohled určený pro sledování dat. Zobrazuje aktuální biom,
+**Monitoring** - pohled určený pro sledování dat. Zobrazuje aktuální biom,
 teplotu a vlhkost v místnosti, 24hodinové grafy historie obou veličin, a
 logbook s nedávnými událostmi (změny biomu, spouštění automatizací).
 
-**Ovládání** — pohled pro interakci. Obsahuje manuální ovládání LED pásku
+**Ovládání** - pohled pro interakci. Obsahuje manuální ovládání LED pásku
 (barva, jas, efekt), tlačítka pro spuštění jednotlivých scén, slidery pro
 nastavení prahových hodnot automatizací (práh teploty, vlhkosti pro déšť)
 a administrativní akce (restart Minecraft serveru, vypnutí LED).
@@ -82,8 +82,8 @@ a administrativní akce (restart Minecraft serveru, vypnutí LED).
 
 Projekt implementuje vícevrstvé zabezpečení:
 
-- **HTTPS** na HA dashboardu — self-signed TLS certifikát, RSA 2048, SHA256
-- **Šifrovaná komunikace ESP32 ↔ HA** — Noise protokol v ESPHome API
+- **HTTPS** na HA dashboardu - self-signed TLS certifikát, RSA 2048, SHA256
+- **Šifrovaná komunikace ESP32 ↔ HA** - Noise protokol v ESPHome API
 - **OTA firmware updates** chráněné heslem
 - **RCON** na Minecraft serveru s dlouhým náhodně generovaným heslem
 - **SSH tunel** pro RCON komunikaci mezi HA a Docker kontejnerem,
